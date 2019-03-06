@@ -81,7 +81,7 @@ Here is a collection of additional packages you may want to install:
 
 * Database access:
   * `psycopg2`: access to the LAV database server
-  * `ipython_pg`: LAV postgres database access module
+  * `ipython_pg`: LAV postgres database access module (for now, see https://github.com/LAV-ESG/ipython_psql_extension#installation)
 * Data formats:
   * `feather-format`: enables `pandas` to read Apache Feather.
 * GIS:
