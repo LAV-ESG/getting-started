@@ -123,6 +123,15 @@ call %ANACONDA%\Scripts\activate %ENV%
 %ANACONDA%\Scripts\jupyter-lab.exe --browser="\"%CHROME%\" --app=%%s"
 ```
 
+*Note*: Be sure to install JupyterLab as it does not come pre-installed with `anaconda`.
+
+*Note*: to be able to use any newly created environment within Jupyter, you need to install it first. oO that end, first activate the environment in question and then execute the following. Note that the `--name` and `--display-name` can be pretty much anything, but
+by conection they should reflect the actual environment name.
+```cmd
+activate [env]
+python -m ipykernel install --name [env] --display-name "Python ([env])"
+```
+
 ## Installing other tools
 
 ### Gurobi
