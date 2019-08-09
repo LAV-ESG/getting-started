@@ -110,7 +110,9 @@ call %ANACONDA%\Scripts\activate %ENV%
 ## Other things you might need
 
 ### Polybox
-We recommend mirroring your files to [polybox](https://polybox.ethz.ch). If you are an LAV employee, use the fileserver (do not use local storage, there is no back up).
+We recommend mirroring your files to [polybox](https://polybox.ethz.ch):
+
+*Note to LAV employees: use the fileserver (never local storage, there is no back up).*
 
 1. Log in to [polybox](https://polybox.ethz.ch), click your name in the top right and click `Settings`
 2. Download the client for your platform and set it up.
@@ -125,6 +127,9 @@ We recommend mirroring your files to [polybox](https://polybox.ethz.ch). If you 
    - as per ETH regulations, you should not use non-ETH servers to store or transfer data (meaning use nothing else than [polybox](https://polybox.ethz.ch))
    - even if [polybox](https://polybox.ethz.ch) gives you a semi-automatic backup, it is wise to be paranoid and regularily copy your material e.g. to an external drive at home
    - if you work with data subject to a restrictive license, do not store it anywhere, includig polybox.
+   
+### Working with the LAV-ESG database server
+If you need access to the server, follow [these instructions](https://github.com/LAV-ESG/getting-started/blob/master/LAV-ESG_gettingStarted.pdf). Note: you no longer need to install the `ipython_pg` module as it comes with the environment you installed above.
 
 ### Gurobi
 Gurobi is a commercial software. 
