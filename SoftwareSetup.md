@@ -7,9 +7,11 @@ We love Python and use it for almost everything. We recommend the [Miniconda](ht
 ### Installing Miniconda
 
 1. Download and run the installer for your platform from https://docs.conda.io/en/latest/miniconda.html
-2. On Windows, chose to install for `Just Me`
-3. Leave the destination folger as is (unless you already have Miniconda installed).
+2. On Windows, choose to install for `Just Me`
+3. Leave the destination folder as is (unless you already have Miniconda installed).
 4. Chose *neither* to 'Add Anaconda to my PATH' nor to 'Register Anaconda as my default Python 3.7'
+
+**Beware**: under no circumstances should you work within the Miniconda installation folder, meaning keep and execute your Python files anywhere else (and have at least two independent [backups]()) . It causes weird problems and - danger of data-loss - the Miniconda uninstaller deletes any file in the Miniconda folder, regardless if it came with Miniconda or not. 
 
 ### Setting up a Python 3.6 environment
 
@@ -106,6 +108,23 @@ call %ANACONDA%\Scripts\activate %ENV%
     * `CHROME`:  the path to your Google Chrome executable
 
 ## Other things you might need
+
+### Polybox
+We recommend mirroring your files to [polybox](https://polybox.ethz.ch). If you are an LAV employee, use the fileserver (do not use local storage, there is no back up).
+
+1. Log in to [polybox](https://polybox.ethz.ch), click your name in the top right and click `Settings`
+2. Download the client for your platform and set it up.
+3. Chose a folder within the polybox-folder as your working directory (where you keep and execute all your code)
+
+**Why you should do it**:
+  - sleep better knowing your work is safely backed up in ETH's datacenter
+  - be more flexible having access to your files anywhere and any time
+  - easily share your work with your supervisor
+  
+ **Things to consider**:
+   - as per ETH regulations, you should not use non-ETH servers to store or transfer data (meaning use nothing else than [polybox](https://polybox.ethz.ch))
+   - even if [polybox](https://polybox.ethz.ch) gives you a semi-automatic backup, it is wise to be paranoid and regularily copy your material e.g. to an external drive at home
+   - if you work with data subject to a restrictive license, do not store it anywhere, includig polybox.
 
 ### Gurobi
 Gurobi is a commercial software. 
