@@ -19,7 +19,7 @@ Environments are basically parallel Python installations that you can switch bet
 We created a preconfigured environment for you so all you have to do is:
 
 1. Download our pre-configured [environment file](https://anaconda.org/ggeorges/py36-gg/2019.06.20.145805/download/py36-gg.yaml) and leave it in the download folder.
-2. Start a miniconda prompt (see above)
+2. Start an [Anaconda Prompt](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#opening-an-anaconda-prompt).
 3. Make sure your `conda` package manager is up to date:
 ```cmd
 conda update conda
@@ -51,7 +51,7 @@ source $HOME/miniconda/bin/activate py36-gg
 
 ### Installing new packages
 
-1. Open an Anaconda Prompt (see above)
+1. Open an [Anaconda Prompt](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#opening-an-anaconda-prompt)
 2. Then run the following command, where `packagename` is the name of the package you need:
 ```cmd
 conda install packagename
@@ -66,11 +66,11 @@ This happens if the package manager (`conda`) updates other packages while insta
 Sometimes, it misses that a third package depended on one of the updated packages and is now incompatible with it.
 Unfortunately, there is not much you can do except remove your environment (see command below) and set it up anew. If you install new packages immediately afterwards, there is a better chance (but no guarantee) of success. The fresh set up brings all packages to their latest version. The risk of failure increases with the age of your installation and each time you install a `conda-forge` package.
 
-1. Run the following command in an Anaconda Prompt:
+1. Run the following command in an [Anaconda Prompt](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#opening-an-anaconda-prompt):
 ```cmd
 conda env remove -n py36-gg
 ```
-2. Repeat steps to set up your Python 3.6 environment 
+2. Repeat steps to [set up Python 3.6 environment](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#setting-up-a-python-36-environment)
 
 ## Jupyter notebooks
 Jupyter notebooks are great. Use them for everything (unless instructed otherwise) and benefit of their [many features](https://www.youtube.com/watch?v=ctOM-Gza04Y), including documentation.
@@ -96,32 +96,39 @@ call %ANACONDA%\Scripts\activate %ENV%
 %ANACONDA%\Scripts\jupyter-lab.exe --browser="\"%CHROME%\" --app=%%s"
 ```
 
-If it complains about not finding some paths, you may have to adjust: 
-* `ANACONDA`: to account for an installation directory other than the default proposed by the installer
-* `WORKDIR`: you workdirectory (generally `C:\Users\[username]` on Windows)
-* `ENV`: the conda environment to use (needs jupyter-lab or notebook installed - you can chose a different environment in jupyter later)
-* `CHROME`:  the path to your Google Chrome installation
+#### Things you should know:
+ * If you prefer plain `Jupyter Notebook`, just replace the call in the last line of the script from `juypter-lab` to `jupyter-notebook`.
+ * The only issue we found with `JupyterLab` so far is that the `Interrupt` command does sometimes not work, in particular with our  [LAV-ESG ipython-pg extension](https://github.com/LAV-ESG/ipython_psql_extension).
+ * If the script complains about not finding some paths, you may have to adjust: 
+    * `ANACONDA`: to account for an installation directory other than the default proposed by the installer
+    * `WORKDIR`: you workdirectory (`C:\Users\[username]` on Windows, `/home/[username]` on Unix)
+    * `ENV`: the conda environment to use (needs jupyter-lab installed)
+    * `CHROME`:  the path to your Google Chrome executable
 
-## Other toosl
+## Other things you might need
 
 ### Gurobi
-If you are working with linear optimization, you will need to install Gurobi.
-Gurobi is a heavy-duty linear program solver.
-You can get a free academic license with your ETH e-mail address.
-Simply follow the instructions on the [Gurobi homepage](http://www.gurobi.com/registration/download-reg) and then install the 
+Gurobi is a commercial software. 
+You can get a free academic licence with your ETH e-mail address.
+
+1. Head over to the [Gurobi homepage](http://www.gurobi.com/registration/download-reg) and fill out the registration form.
+2. Contrary to what is suggested, do not download Gurobi. Go further down and click `Your Gurobi Licenses`
+3. Click on what should be only one license number displayd in the table.
+4. Scroll down to 'Installation' (below the table)
+5. Copy the line `grbgetkey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` (where `x` are some numbers and letters)
+6. Open an [Anaconda Prompt](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#opening-an-anaconda-prompt)
+7. Paste the line you copied into the prompt (on Windows, right-click the black background of the window) and execute.
 
 ### Code editor
 For more serious coding needs you need a good Python editor.
 We recommend [Microsoft Visual Code](https://code.visualstudio.com/download), [configured for Python](https://code.visualstudio.com/docs/languages/python) using the official [Microsoft Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) with [IntelliSense](https://go.microsoft.com/fwlink/?linkid=2006060) enabled.
 
 ### Git
-Git is a version management tool to trace changes to your document.
-[Git for Windows](https://git-scm.com/download/win) gives you a full git client and in fact throws in a very usable Bash for Windows.
+Git comes preinstalled on Unix. For Windows, use [Git for Windows](https://git-scm.com/download/win). It also gives you a very usable Bash command line for Windows.
 
 ### ConEmu
-If you need to work in the console on Windows (using GitBash), you may prefer the look and robustness of
-[ConEmu](https://conemu.github.io/).
+If you need to work in the console on Windows (e.g. using GitBash), get [ConEmu](https://conemu.github.io/). It looks better, is more robust and offers tons of handy features (such as killing the active processes using `Ctrl+Break`).
 
 ### QGIS
 If you work a lot with GIS data, consider [installing QGIS](https://qgis.org/en/site/forusers/download.html).
-It is a desktop GIS app and makes exploring GIS data easier than in `Jupyter`.
+Panning and scrolling makes exlporing large datasets easier.
