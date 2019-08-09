@@ -1,94 +1,156 @@
 # Getting-started
-Here are some steps you should take to get your computer ready for your project:
+Here are some steps you should take to get your computer ready for your project.
 
-## Install Python
-We try to do everything in [Python](http://python.org). So the first thing you should get is a Python installation.
-We recommend [Anaconda](https://www.continuum.io/anaconda-overview), as it comes with everything you need to get started - except a good editor (more on that later). 
-All you need to do is download and run the installer from [the download page](https://www.continuum.io/downloads).
+## Set up your computer to work on your project
+We put up [detailed instructions](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md) helping you to make getting started as easy as possible.
 
-## Access the LAV-ESG database
-If you need access to data on our database server, follow the instructions in [this document](LAV-ESG_gettingStarted.pdf)
+## Learnin to work with Python
 
-## Get to know Python for scientific computing
-Python is rather slow: good C or Fortran code can be orders of magnitude faster than Python.
-That is because they allow you more direct control over the hardware, which is great when performance is of the essence.
-But often it is not: many tasks in a program are mundane - all you do is call into libraries that do the things for you.
-In C there are libraries too, but you need to implement things like resource-management and error processing yourself.
-A high-level language like Python on the other hand does that for you - plus you don't have to recompile your code all the time.
+### Python for scientific computing
+Python is known for being [easy learn](https://www.quora.com/Is-Python-an-easy-language-to-learn), but slow compared to C or Fortran.
+It owes its popularity in scientific computing due to the many great libraries, themselves often written in fast C and Fortran.
+This gives you heavy-duty computing with the easy-of-use of Python.
 
-So Python is slow to run, but fast to write.
-There is a remedy for the runtime-problem: you can call C or Fortran code from Python.
-Based on this ability, people wrote the wondeful [SciPy stack](http://scipy.org).
-It is a collection of high-performance tools for anything from vector-algebra to plotting (most of which written in C or Fortran), with an easy-to-use Python interface.
+The downside is, you need to 'learn' those libraries.
+For example, this is slow:
+```python
+N = 100000
+a = np.random.rand(N)  # creates a very long array of random numbers
+result = 0
+for i in range(N):  # iterate from 0 to the length o
+    results = result + a[i]
+ ```
+ This does the same but much faster (because in C, in the background):
+ ```python
+ N = 100000
+ a = np.random.rand(N)
+ result = a.sum()
+ ```
+ As a guideline to get you started, if you find yourself using `for`-loops like the one above (with an increasing integer variable `i` that you use to access the array), you are doing something wrong.
+ Check the documentation: there probably is a function that can do what you need much faster (and without you having to implement it).
+ 
+The libraries you should know are:
 
-You should get to know the following packages:
-
-1. NumPy for vector-based math (have a look at the [quickstart tutorial](https://docs.scipy.org/doc/numpy/user/quickstart.html)
-2. matplotlib for plotting (see the [pyplot tutorial](http://matplotlib.org/users/pyplot_tutorial.html))
-3. the [scipy library](https://docs.scipy.org/doc/scipy/reference/) for common tasks such as numeric optimization, root-finding or interpolation
-4. pandas for data-analysis (see [10 Minutes to pandas](http://pandas.pydata.org/pandas-docs/stable/10min.html))
-
-NumPy is the most important one, as it is the basis for all others.
-It works in much the same as vectors and matrices in MATLAB.
-Everything you can do using vector-operations in NumPy, you can also do using for-loops in Python.
-However, you should work with vector operations whenever possible, because otherwise you drop back to the slow Python world.
+1. **Pandas** to analyze tabular datasets, which most of them are (see [10 Minutes to pandas](http://pandas.pydata.org/pandas-docs/stable/10min.html))
+2. **seaborn**, a tool that greatly simplies plotting tabular data
+3. **NumPy** for vector-based math, similar to Matlab (have a look at the [quickstart tutorial](https://docs.scipy.org/doc/numpy/user/quickstart.html)
+4. the [scipy library](https://docs.scipy.org/doc/scipy/reference/) provides various tools for  tasks such as numeric optimization, root-finding or interpolation
 
 ## Where and how to write and run code
+Your code does not just have to be understood by the machine, but also other humans.
+Most importantly, this includes youself in a few months.
+Here some hints to better use the available tools:
 
 ### Jupyter Notebooks
-Generally, we recommend Jupyter IPython notebooks for all data-analysis work (anything that entails plotting and viewing data a lot). 
-Notebooks allow you to mix code, documentation (with LaTeX equations) and plotting into one greate way of documenting your progress.
-Have a look at [this blog-post](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/) to see what it can do.
-If you got Anaconda, then it is already pre-installed - see the [documentation](http://jupyter.org/install.html) for instructions on how to launch it.
+Use Jupyter notebooks for all data-analysis (anything that entails plotting and viewing data a lot).
+Notebooks allow you to mix code, documentation (with LaTeX equations) and plotting and are the perfect way of documenting your progress.
+To document, put the cell mode to `Markdown`. 
+Alternatively, when in a cell, hit `Escape` to enter [command mode](https://medium.com/ibm-data-science-experience/back-to-basics-jupyter-notebooks-dfcdc19c54bc), and then hit `M`.
+Two other handy command-mode shortcuts are `A` and `B` to add a cell above resp. below the current cell.
 
-*Hint for Windows users*: create a shortcut, say on the Desktop, to "jupyter-notebook.exe" - you'll find it in the "Scripts" folder of your Anaconda installation folder. By adjusting the "Start in" property of your shortcut, you can make the initial overview over your files start in any directory you like.
+Get used to documenting your thoughts when performing an analysis: why do you do something, what do you see?
+And most importantly, write down your sources. Wher did you get the data from? 
+You can easily put hyperlinks in markdown, e.g. to remember an interesting paper:
+```Markdown
+Results are based on the paper of [Küng et al.](https://doi.org/10.1016/j.trc.2018.09.003)
+```
 
-### PyCharm, Sublime, PyDev, Atom, ...
-If you have cells with codes exceeding some 30 lines, in particular if they contain function or class definitions, then you are probably no longer pure data-analysis - you are creating a piece of software.
+Have a look at [this blog-post](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/) for a full feature review.
+
+### Scripting vs. programming
+If you have notebook-cells with code in excess of 10-20 lines, then you are probably not just doing data-analysis anymore - you are creating a piece of software.
 Jupyter notebooks are not the best choice for that, for various reasons.
-Instead, you should this growing bit of code out into a ".py"-File, and consider it an external library.
-
-For one, you now get to use real developer tools - we recommend PyCharm, for which students get free licenses, or Sublime with the "Anaconda IDE plugin" installed.
-With outlining and advanced search capabilities, they make it is much easier to navigate a growing code-basis.
-Also you can activate PEP8-checking, which improves your coding style.
-This is important since, when writing a library, it is all about the code and people reusing it; data-analysis in the jupyter notebook on the other hand is all about the results.
-
-Consider [unittesting](https://cgoldberg.github.io/python-unittest-tutorial/) while developping.
-Also, whenever possible, try to "tool" your library by providing a command-line interface (CLI).
-That way, people (and you) can use it from the console to generate data - which you can then analyze in a notebook again.
-"docopt" is a fantastic little tool to generate CLIs.
-
-### Spyder
-Spyder ships with Anaconda; it is designed to resemble MATLAB: in one window, it gives you an editor and a IPython console. The workflow is mostly you pasting bits of code from your editor to the console.
-While there may be legitimate use-cases, we ask you to please don't use it.
-As an environment, it is somewhere a Jupyter notebook and a editor+console setup. But it is neither. The copy-paste style coding leads to bad coding habits, in particular with inexperienced programmers.
-
-
-
-
-
+You should be using a ".py"-File instead and run it as a program.
 
 ## A note on how to write code
-What is the hallmark of a good programmer? Readable code!
-Readable code is code that people other than you (or you, a year after finishing your project) understand, without having to go through it line by line to figure out what happens.
-That means: don't write code for machines, write code for humans.
+Good code is code that people other than you (or future you) understand, without having to go through it line by line to figure out what happens.
+Don't write code for machines, write code for humans.
 
-The Python community has its own definition of what they consider good or "Pythonic" code: "[The Zen of Python](https://www.python.org/dev/peps/pep-0020/)" (a.k.a. PEP20).
+Python actually has some conventions for this.
+A good introduction is the [style-guide of the Hitchhiker's guide to Python](http://python-guide-pt-br.readthedocs.io/en/latest/writing/style/).
 
-Well, the first thing you should do is follow the Python coding-style "[PEP8](https://www.python.org/dev/peps/pep-0008/)".
-Just activate the PEP8-checking mode of your editor; it will then highlight styling errors for you - and of course you should remove them.
-It may be a bit cumbersome at the beginning, but you'll quickly get the hang of it.
+To make your life a little easier, here a few tricks:
 
-One of the most important rules is to add docstrings to every function and method.
-Write a sentence about what the function does, what arguments it accepts and what type they should be.
+### Avoid more than 2 levels of indentation
+Indentation is whenever you have empty space at the beginning of a line.
+More than 2 or three levels is ugly - here we have 6:
+```Python
+for a in A:
+    if a > 3:
+        for b in B:
+            if b > 4:
+                for c in  C:
+                    if c > 7:
+                         do_something(a, b, c)
+```
+Now we bring that down to four:
+```Python
+for a in A:
+    for b in B:
+        for c in C:
+            if a <= 3 or b <= 4 or c <= 7:
+                continue
+            do_something(a, b, c)
+ ```
+A much better way would be to use [itertools.product](https://docs.python.org/3.6/library/itertools.html#itertools.product):
+ ```Python
+ import itertools
+ for a, b, c in itertools.product(A, B, C):
+     if a <= 3 or b <= 4 or c <= 7:
+         continue
+     do_something(a, b, c)
+```
 
-Then you should study the [style-guide of the Hitchhiker's guide to Python](http://python-guide-pt-br.readthedocs.io/en/latest/writing/style/).
-It lists the most important Python "idioms" that you should know and apply. Just try to remember them...
+### Avoid hard-coding things:
+You can use default arguments in a function to turn this:
+```Python
+def F_aero(v):
+    return 0.5 * 1.2 * 0.3 * 2 * v**2
+    
+F_aero(13)
+```
+into the equivalent but much more flexible:
+```Python
+def F_aero2(v, rho=1.2, c_D=0.3, A_f=2.0):
+    return 0.5 * rho * c_D * A_f * v**2
+    
+F_aero2(13) == F_aero(13)
+F_aero2(13, c_D=0.4) > F_aero(13)
+```
 
-
-
-
-
-
-
-
+An other example of extreme hard-coding is:
+```Python
+age_bracket0 = 0
+age_bracket1 = 0
+age_bracket2 = 0
+age_bracket3 = 0
+age_bracket4 = 0
+age_bracket5 = 0
+for age in age_of_people_in_population:
+    if age > 0 and age <= 10:
+        age_pracket0 += 1
+    elif age > 10 and age <= 20:
+        age_pracket1 += 1
+    elif age > 20 and age <= 30:
+        age_pracket2 += 1
+    elif age > 40 and age <= 50:
+        age_pracket3 += 1
+    elif age > 50 and age <= 60:
+        age_bracket4 += 1
+    elif age > 60
+        age_bracket5 += 1
+age_count = {0: age_bracket0, 10: age_bracket1, 20: age_bracket2, ...}
+```
+Compare this to, and think about what happens if you ever decide to have 5-year age brackets:
+```Python
+age_count = {a: 0 for a in range(0, 51, 10)}
+for age in age_of_people_in_population:
+    for lower in age_count.keys():
+        if age <= lower:
+            continue
+        age_count[lower] += 1
+```
+And finally the smart way of doing this:
+```Python
+np.digitize(age_of_people_in_population, np.arange(0, 61, 10))
+```
