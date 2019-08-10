@@ -11,23 +11,6 @@ It owes its popularity in scientific computing due to the many great libraries, 
 This gives you heavy-duty computing with the easy-of-use of Python.
 
 The downside is, you need to 'learn' those libraries.
-For example, this is slow:
-```python
-N = 100000
-a = np.random.rand(N)  # creates a very long array of random numbers
-result = 0
-for i in range(N):  # iterate from 0 to the length o
-    results = result + a[i]
- ```
- This does the same but much faster (because in C, in the background):
- ```python
- N = 100000
- a = np.random.rand(N)
- result = a.sum()
- ```
- As a guideline to get you started, if you find yourself using `for`-loops like the one above (with an increasing integer variable `i` that you use to access the array), you are doing something wrong.
- Check the documentation: there probably is a function that can do what you need much faster (and without you having to implement it).
- 
 The libraries you should know are:
 
 1. **Pandas** to analyze tabular datasets, which most of them are (see [10 Minutes to pandas](http://pandas.pydata.org/pandas-docs/stable/10min.html))
@@ -69,6 +52,24 @@ Python actually has some conventions for this.
 A good introduction is the [style-guide of the Hitchhiker's guide to Python](http://python-guide-pt-br.readthedocs.io/en/latest/writing/style/).
 
 To make your life a little easier, here a few tricks:
+
+### Avoid C-style `for` loops; they are slow
+In C, you will commonly iterate over an array using an integer variable `i` that is being increased from 0 to some pre-determined maximum `N` by a `for`-loop. In Python, this is slow:
+```python
+N = 100000
+a = np.random.rand(N)  # creates a very long array of random numbers
+result = 0
+for i in range(N):  # iterate from 0 to the length o
+    results = result + a[i]
+ ```
+A much faster and easier variant is:
+ ```python
+ N = 100000
+ a = np.random.rand(N)
+ result = a.sum()
+ ```
+This works because `a` is a NumPy array.
+It provides the `sum` method, which, behind the scenes, calls very efficient C-code to do the sum.
 
 ### Avoid more than 2 levels of indentation
 Indentation is whenever you have empty space at the beginning of a line.
