@@ -70,6 +70,25 @@ A much faster and easier variant is:
  ```
 This works because `a` is a NumPy array.
 It provides the `sum` method, which, behind the scenes, calls very efficient C-code to do the sum.
+Also, in Python you actually do not need the variable `i`, you can directly iterate over the array values (although this is still slow):
+```python
+N = 100000
+a = np.random.rand(N)  # creates a very long array of random numbers
+result = 0
+for number in a:
+    results = result + number
+ ```
+ If you still need access to a counter like `i`, use `enumerate`.
+```Python
+for i, number in enumerate(a):  # iterate from 0 to the length o
+    if i % 2 == 0:   # only sum numbers add even positions in array
+        results = result + number 
+ ```
+ But this is still a for loop and thus slow. 
+ You can achieve the same with:
+ ```Python
+ result = a[::2].sum()
+ ```
 
 ### Avoid more than 2 levels of indentation
 Indentation is whenever you have empty space at the beginning of a line.
