@@ -2,9 +2,8 @@
 Here are some steps you should take to get your computer ready for your project.
 
 ## Set up your computer to work on your project
-We put up [detailed instructions](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md) helping you to make getting started as easy as possible.
-
-## Learnin to work with Python
+We put up [detailed instructions](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md) helping you to make getting started as easy as possible. When you are done, the following gives you some pointers how to start using Python:
+## Learning to work with Python
 
 ### Python for scientific computing
 Python is known for being [easy learn](https://www.quora.com/Is-Python-an-easy-language-to-learn), but slow compared to C or Fortran.
