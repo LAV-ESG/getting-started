@@ -20,7 +20,7 @@ To get 3.6, you need to create a new conda environment.
 Environments are basically parallel Python installations that you can switch between.
 We created a preconfigured environment for you so all you have to do is:
 
-1. Download our pre-configured [environment file](https://anaconda.org/ggeorges/py36-gg/2019.06.20.145805/download/py36-gg.yaml) and leave it in the download folder.
+1. Download our pre-configured [environment file for Python 3.6](https://anaconda.org/ggeorges/py36-gg/2019.06.20.145805/download/py36-gg.yaml) oor [for Python 3.7](https://anaconda.org/ggeorges/py37-gg/2019.12.02.123019/download/py37-gg.yaml) and leave it in the download folder.
 2. Start an [Anaconda Prompt](https://github.com/LAV-ESG/getting-started/blob/master/SoftwareSetup.md#opening-an-anaconda-prompt).
 3. Make sure your `conda` package manager is up to date:
 ```cmd
